@@ -19,7 +19,6 @@ const Test = () => {
       ) : (
         APIdata.users.map((user, i) => <p key={i}>{user}</p>)
       )}
-      {}
     </Fragment>
   );
 };

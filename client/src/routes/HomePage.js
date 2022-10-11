@@ -4,7 +4,7 @@ import Test from "../components/test/Test";
 const HomePage = () => {
   return (
     <Fragment>
-      <h1>Welcome!</h1>
+      <h1>Welcome to YelpCamp!</h1>
       <Test />
     </Fragment>
   );
