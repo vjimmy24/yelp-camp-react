@@ -1,0 +1,51 @@
+.header {
+  text-align: center;
+  margin-top: 300px;
+  font-weight: 850;
+  animation: header-load 650ms ease-in;
+  animation-fill-mode: forwards;
+  transform: translateY(-20px);
+  opacity: 1;
+  color: green;
+}
+
+.lead {
+  width: 40%;
+  font-weight: 400;
+  text-align: center;
+  animation: lead-load 650ms ease-in;
+  animation-fill-mode: forwards;
+  transform: translateY(-50px);
+  opacity: 1;
+  color: rgb(93, 155, 93);
+}
+
+.flexContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@keyframes header-load {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes lead-load {
+  0% {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}

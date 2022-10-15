@@ -1,0 +1,40 @@
+.navBar {
+  width: 100%;
+  margin-top: 0.5rem;
+  animation: fadeIn 3s;
+  display: block;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+.navItem {
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+  margin-right: 2rem;
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: solid 1px white;
+  text-align: center;
+}
+
+.NavLink {
+  color: rgb(204, 142, 19);
+  text-decoration: none;
+  text-align: center;
+}
+
+.NavLink:hover {
+  border-bottom: solid 2px black;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
