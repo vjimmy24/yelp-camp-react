@@ -22,8 +22,11 @@ const campgroundSchema = new Schema({
     type: String,
   },
   author: {
-    type: String,
-    //  [{ type: Schema.Types.ObjectId, ref: "User" }],
+    type: [{ type: Schema.Types.ObjectId, ref: "User" }],
+  },
+  //Store the object ID's in the campground, rather than the actual review.
+  reviews: {
+    type: [{ type: Schema.Types.ObjectId, ref: "Review" }],
   },
   // images: [imageSchema],
   // geometry: {
@@ -36,9 +39,6 @@ const campgroundSchema = new Schema({
   //     type: [Number],
   //     required: true,
   //   },
-  // },
-  // reviews: {
-  //   type: [{ type: Schema.Types.ObjectId, ref: "Review" }],
   // },
 });
 

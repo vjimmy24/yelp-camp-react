@@ -8,6 +8,7 @@ const session = require("express-session");
 const passport = require("passport");
 const { Campground } = require("./models/campground");
 const { User } = require("./models/user");
+const { Review } = require("./models/review");
 const bodyParser = require("body-parser");
 require("./passportConfig")(passport);
 
@@ -45,6 +46,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Routes
+
+//Authentication
 
 app.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
@@ -85,6 +88,8 @@ app.get("/api", (req, res) => {
   res.json({ users: ["user1", "user2", "user3", "user4"] });
 });
 
+//Campground CRUD API
+
 app.get("/campground", async (req, res) => {
   const campgrounds = await Campground.find({});
   res.send({ campgrounds: campgrounds });
@@ -93,7 +98,7 @@ app.get("/campground", async (req, res) => {
 app.post("/campground", async (req, res) => {
   console.log("creation request has been received!");
   const newCampground = new Campground(req.body);
-  newCampground.author = req.user._id;
+  // newCampground.author = req.user._id;
   await newCampground.save();
   console.log(`Created new camp: ${newCampground}`);
 });
@@ -101,8 +106,8 @@ app.post("/campground", async (req, res) => {
 app.get("/campgrounddetails/:id", async (req, res) => {
   const { id } = req.params;
   // console.log(`camp id: ${id}`);
-  const foundCamp = await Campground.find({ _id: id });
-  // console.log(`Camp data: ${foundCamp}`);
+  const foundCamp = await Campground.find({ _id: id }).populate("reviews");
+  console.log(`Camp data: ${foundCamp}`);
   res.send({ foundCamp: foundCamp });
 });
 
@@ -120,7 +125,21 @@ app.post("/campground/:id", async (req, res) => {
     id,
     ...req.body,
   });
-  console.log(`here is your new campground: ${editedCampground}`);
+  console.log(`here is your edited campground: ${editedCampground}`);
+});
+
+//Campground Review API
+
+app.post("/campground/:id/reviews", async (req, res) => {
+  const { id } = req.params;
+  const campground = await Campground.findById({ _id: id });
+  const review = new Review(req.body);
+  campground.reviews.push(review);
+  console.log(review);
+
+  await review.save();
+  await campground.save();
+  console.log("success!");
 });
 
 //Server Start

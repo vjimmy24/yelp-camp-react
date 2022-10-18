@@ -12,6 +12,7 @@ const CampgroundDetails = (props) => {
     async function fetchAPIData() {
       const res = await fetch(`/campgrounddetails/${id}`);
       const data = await res.json();
+      // console.log(data);
       setCampDetails(data.foundCamp[0]);
     }
     fetchAPIData().catch(console.error);
@@ -23,7 +24,7 @@ const CampgroundDetails = (props) => {
       const res = await fetch("/getUser");
       const data = await res.json();
 
-      console.log(data);
+      // console.log(data);
     }
     fetchUserData();
   };
