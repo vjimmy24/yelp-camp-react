@@ -11,6 +11,7 @@ ul {
   text-align: center;
 }
 .navItem {
+  font-size: large;
   margin-top: 0.5rem;
   margin-left: 1rem;
   margin-right: 2rem;
@@ -27,7 +28,7 @@ ul {
 }
 
 .NavLink:hover {
-  border-bottom: solid 2px black;
+  border-bottom: solid 2px rgb(48, 91, 27);
 }
 
 @keyframes fadeIn {

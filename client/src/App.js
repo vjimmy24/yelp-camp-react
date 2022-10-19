@@ -1,38 +1,38 @@
-import { useEffect, useState, Fragment } from "react";
-import {
-  Routes,
-  Route,
-  Router,
-  RouterProvider,
-  Navigate,
-} from "react-router-dom";
-import Test from "./components/test/Test";
-import HomePageNavbar from "./UI/HomePageNavbar";
+import { Fragment, useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import Navbar from "./UI/Navbar";
 import LoginPage from "./routes/Auth/LoginPage";
 import RegisterPage from "./routes/Auth/RegisterPage";
 import CampgroundDetailsPage from "./routes/Campgrounds/CampgroundDetailsPage";
 import CampgroundEditPage from "./routes/Campgrounds/CampgroundEditPage";
 import CampgroundsPage from "./routes/Campgrounds/CampgroundsPage";
 import NewCampground from "./routes/Campgrounds/NewCampground";
-import ErrorPage from "./routes/ErrorPage";
 import HomePage from "./routes/HomePage";
+import AuthContext from "./Context/auth-context";
 
 // const routerProvider = (
 
 // );
 
 const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userInfo, setUserInfo] = useState({});
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="campgrounds" element={<CampgroundsPage />} />
-      <Route path="campgrounds/new" element={<NewCampground />} />
-      <Route path="campgrounds/:id" element={<CampgroundDetailsPage />} />
-      <Route path="campgrounds/:id/edit" element={<CampgroundEditPage />} />
-      <Route path="register" element={<RegisterPage />} />
-      <Route path="login" element={<LoginPage />} />
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+    <AuthContext.Provider
+      value={{ isLoggedIn, setIsLoggedIn, userInfo, setUserInfo }}
+    >
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="campgrounds" element={<CampgroundsPage />} />
+        <Route path="campgrounds/new" element={<NewCampground />} />
+        <Route path="campgrounds/:id" element={<CampgroundDetailsPage />} />
+        <Route path="campgrounds/:id/edit" element={<CampgroundEditPage />} />
+        <Route path="register" element={<RegisterPage />} />
+        <Route path="login" element={<LoginPage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </AuthContext.Provider>
   );
 };
 

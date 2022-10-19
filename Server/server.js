@@ -56,8 +56,8 @@ app.post("/login", (req, res, next) => {
     else {
       req.login(user, (err) => {
         if (err) throw err;
-        res.json("Successfully authenticated!");
-        console.log(`User info: ${req.user}`);
+        res.send(req.user);
+        console.log(`Logged in, user info: ${req.user}`);
       });
     }
   })(req, res, next);
@@ -84,6 +84,22 @@ app.get("/getUser", (req, res) => {
   res.send(req.user._id);
 });
 
+app.post("/logout", (req, res) => {
+  if (!req.user) {
+    console.log("not logged in.");
+    return;
+  }
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    if (!req.user) {
+      console.log("successfully logged out");
+      console.log(req.user);
+    }
+  });
+});
+
 app.get("/api", (req, res) => {
   res.json({ users: ["user1", "user2", "user3", "user4"] });
 });
@@ -98,7 +114,7 @@ app.get("/campground", async (req, res) => {
 app.post("/campground", async (req, res) => {
   console.log("creation request has been received!");
   const newCampground = new Campground(req.body);
-  // newCampground.author = req.user._id;
+  newCampground.author = req.user._id;
   await newCampground.save();
   console.log(`Created new camp: ${newCampground}`);
 });
@@ -106,8 +122,11 @@ app.post("/campground", async (req, res) => {
 app.get("/campgrounddetails/:id", async (req, res) => {
   const { id } = req.params;
   // console.log(`camp id: ${id}`);
-  const foundCamp = await Campground.find({ _id: id }).populate("reviews");
-  console.log(`Camp data: ${foundCamp}`);
+  const foundCamp = await Campground.find({ _id: id })
+    .populate("reviews")
+    .populate({ path: "reviews", populate: { path: "author" } })
+    .populate("author");
+  // console.log(`Camp data: ${foundCamp}`);
   res.send({ foundCamp: foundCamp });
 });
 
@@ -134,6 +153,7 @@ app.post("/campground/:id/reviews", async (req, res) => {
   const { id } = req.params;
   const campground = await Campground.findById({ _id: id });
   const review = new Review(req.body);
+  review.author = req.user._id;
   campground.reviews.push(review);
   console.log(review);
 

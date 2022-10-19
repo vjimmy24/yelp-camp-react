@@ -1,19 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import CampgroundDeleter from "./CampgroundDeleter";
+import AuthContext from "../../Context/auth-context";
 
 const CampgroundDetails = (props) => {
+  const { userInfo } = useContext(AuthContext);
   const { id } = useParams();
   const [campDetails, setCampDetails] = useState([{}]);
   const [isLoading, setisLoading] = useState(false);
   const [userData, setUserData] = useState(null);
+  const [authorData, setAuthorData] = useState("");
   useEffect(() => {
     setisLoading(true);
     async function fetchAPIData() {
       const res = await fetch(`/campgrounddetails/${id}`);
       const data = await res.json();
-      // console.log(data);
+      // console.log(data.foundCamp[0].author[0].username);
       setCampDetails(data.foundCamp[0]);
+      setAuthorData(data.foundCamp[0].author[0]);
     }
     fetchAPIData().catch(console.error);
     setisLoading(false);
@@ -23,15 +27,13 @@ const CampgroundDetails = (props) => {
     async function fetchUserData() {
       const res = await fetch("/getUser");
       const data = await res.json();
-
-      // console.log(data);
+      console.log(data);
     }
     fetchUserData();
   };
 
   return (
     <div>
-      <button onClick={getUserHandler}> button </button>
       <h1>Details Page</h1>
 
       {!isLoading && (
@@ -41,15 +43,24 @@ const CampgroundDetails = (props) => {
       )}
 
       <div>
-        {!isLoading && <p>Price: {campDetails.price} Per Night</p>}
+        {!isLoading && <p>Price: ${campDetails.price} (Per Night)</p>}
         {!isLoading && <p>{campDetails.description}</p>}
       </div>
-      <div>
+      <div>{!isLoading && <p>Listed by: {authorData.username}</p>}</div>
+      {/* <div>
         <Link to="/campgrounds">Campgrounds</Link>
-      </div>
-      <div>
-        <CampgroundDeleter id={id} />
-      </div>
+      </div> */}
+
+      {userInfo._id === authorData._id && (
+        <Link to="edit">
+          <button>Edit Campground</button>
+        </Link>
+      )}
+      {userInfo._id === authorData._id && (
+        <div>
+          <CampgroundDeleter id={id} />
+        </div>
+      )}
     </div>
   );
 };

@@ -46,7 +46,7 @@ const EditCampground = () => {
       price: formPrice.current.value,
       image: formImage.current.value,
     });
-    navigate(-1);
+    navigate(`/campgrounds/${id}`);
   };
 
   return (

@@ -5,10 +5,9 @@ import { Link } from "react-router-dom";
 const CampgroundsList = () => {
   return (
     <Fragment>
-      <h1>Campgrounds List</h1>
-      <Link to="/">Home</Link>
+      <h1>Campgrounds</h1>
       <div>
-        <Link to="new">Create a new campground?</Link>
+        <Link to="new">Want to list a new campground?</Link>
       </div>
       <CampgroundList />
     </Fragment>

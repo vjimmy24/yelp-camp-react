@@ -1,8 +1,11 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import classes from "./LoginPage.module.css";
+import AuthContext from "../../Context/auth-context";
 
 const LoginPage = () => {
+  const { isLoggedIn, setIsLoggedIn, userInfo, setUserInfo } =
+    useContext(AuthContext);
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -56,12 +59,14 @@ const LoginPage = () => {
       };
       const res = await fetch("/login", options);
       const data = await res.json();
+      setUserInfo(data);
     };
     // console.log(`login creds: username: ${username}, password:${password}`);
+    sendAPIData({ username: username, password: password });
     setUsernameTouched(false);
     setPasswordTouched(false);
-    navigate("/campgrounds");
-    sendAPIData({ username: username, password: password });
+    setIsLoggedIn(true);
+    navigate(-1);
   };
 
   const usernameClass = usernameInputIsInvalid
@@ -73,6 +78,7 @@ const LoginPage = () => {
 
   return (
     <Fragment>
+      {" "}
       <h1>Login</h1>
       <form action="" onSubmit={formSubmitHandler}>
         <div>
@@ -107,7 +113,7 @@ const LoginPage = () => {
         </div>
         <button disabled={!formIsValid}>Submit</button>
       </form>
-      <Link to="/register">Not a user? Register here!</Link>
+      <Link to="/register">Not a user? Register here!</Link>{" "}
     </Fragment>
   );
 };

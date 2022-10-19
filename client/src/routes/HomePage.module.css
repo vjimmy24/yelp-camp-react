@@ -1,7 +1,7 @@
 .header {
   text-align: center;
   margin-top: 300px;
-  font-weight: 850;
+  font-weight: 700;
   animation: header-load 650ms ease-in;
   animation-fill-mode: forwards;
   transform: translateY(-20px);
@@ -11,7 +11,8 @@
 
 .lead {
   width: 40%;
-  font-weight: 400;
+  font-weight: 500;
+  font-size: large;
   text-align: center;
   animation: lead-load 650ms ease-in;
   animation-fill-mode: forwards;
