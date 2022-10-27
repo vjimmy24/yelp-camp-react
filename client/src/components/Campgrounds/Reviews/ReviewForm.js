@@ -1,7 +1,9 @@
-import { React, Fragment, useState, useRef } from "react";
+import { React, Fragment, useState, useRef, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import ReviewContext from "../../../Context/review-context";
 
 const ReviewForm = () => {
+  const { reviews, setReviews } = useContext(ReviewContext);
   const [ratingValue, setRatingValue] = useState("3");
   const reviewBodyRef = useRef();
 
@@ -22,16 +24,18 @@ const ReviewForm = () => {
           "Content-Type": "application/json",
         },
       };
-      const res = await fetch(`/campground/${id}/reviews`, options);
-      const data = await res.json();
+      await fetch(`/campground/${id}/reviews`, options);
     };
 
     sendAPIData({
       rating: ratingValue,
       body: reviewBodyRef.current.value,
     });
+    // setReviews((review) => {
+    //   reviews: [...reviews];
+    // });
     reviewBodyRef.current.value = "";
-    navigate(`/campgrounds/${id}`);
+    // navigate(`/campgrounds/${id}`);
   };
 
   return (

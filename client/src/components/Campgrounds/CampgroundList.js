@@ -18,9 +18,8 @@ const CampgroundList = () => {
         <p>Loading...</p>
       ) : (
         campData.campgrounds.map((campground, i) => (
-          <div>
+          <div key={campground._id}>
             <Campground
-              key={campground.id}
               id={campground._id}
               title={campground.title}
               location={campground.location}

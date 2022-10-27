@@ -1,6 +1,9 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 const express = require("express");
-const app = express();
-const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/yelp-camp-react";
+const dbUrl = "mongodb://localhost:27017/yelp-camp-react";
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
@@ -10,6 +13,20 @@ const { Campground } = require("./models/campground");
 const { User } = require("./models/user");
 const { Review } = require("./models/review");
 const bodyParser = require("body-parser");
+const multer = require("multer");
+const MongoStore = require("connect-mongo");
+const fileStorageEngine = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "./uploads");
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + "--" + file.originalname);
+  },
+});
+const cors = require("cors");
+const upload = multer({ storage: fileStorageEngine });
+
+const secret = process.env.SECRET || "mangocat";
 require("./passportConfig")(passport);
 
 //<---------------------------------END OF IMPORTS--------------------------------->
@@ -29,26 +46,48 @@ db.once("open", () => {
   console.log("Successfully Connected to Database!");
 });
 
-//Middleware
+const app = express();
 
-app.use(express.json());
+//Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+// app.options("*", cors);
+const store = MongoStore.create({
+  mongoUrl: dbUrl,
+  crypto: {
+    secret,
+  },
+  touchAfter: 24 * 60 * 60,
+});
 app.use(
   session({
-    secret: "mangocat",
+    name: "shellcat",
+    // store,
+    secret,
     resave: true,
     saveUninitialized: true,
+    // cookie: {
+    //   httpOnly: true,
+    //   //SECURE WHEN DEPLOYED
+    //   secure: false,
+    //   expires: Date.now() + 6.048e8,
+    //   maxAge: 6.048e8,
+    // },
   })
 );
-app.use(cookieParser("mangocat"));
+app.use(cookieParser(secret));
 app.use(passport.initialize());
 app.use(passport.session());
+
+// app.use(function (req, res, next) {
+//   res.locals.user = req.user;
+//   next();
+// });
 
 //Routes
 
 //Authentication
-
 app.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
     if (err) throw err;
@@ -80,10 +119,6 @@ app.post("/register", (req, res) => {
   });
 });
 
-app.get("/getUser", (req, res) => {
-  res.send(req.user._id);
-});
-
 app.post("/logout", (req, res) => {
   if (!req.user) {
     console.log("not logged in.");
@@ -95,9 +130,13 @@ app.post("/logout", (req, res) => {
     }
     if (!req.user) {
       console.log("successfully logged out");
-      console.log(req.user);
+      // console.log(req.user);
     }
   });
+});
+
+app.get("/getUser", (req, res) => {
+  console.log(req.session);
 });
 
 app.get("/api", (req, res) => {
@@ -105,18 +144,19 @@ app.get("/api", (req, res) => {
 });
 
 //Campground CRUD API
+app.post("/campground", upload.single("campImage"), async (req, res) => {
+  // console.log("creation request has been received!");
+  // res.status(200).send(req.file);
+  console.log(req.user);
+  // const newCampground = new Campground(req.body);
+  // newCampground.author = req.user._id;
+  // await newCampground.save();
+  // console.log(`Created new camp: ${newCampground}`);
+});
 
 app.get("/campground", async (req, res) => {
   const campgrounds = await Campground.find({});
   res.send({ campgrounds: campgrounds });
-});
-
-app.post("/campground", async (req, res) => {
-  console.log("creation request has been received!");
-  const newCampground = new Campground(req.body);
-  newCampground.author = req.user._id;
-  await newCampground.save();
-  console.log(`Created new camp: ${newCampground}`);
 });
 
 app.get("/campgrounddetails/:id", async (req, res) => {

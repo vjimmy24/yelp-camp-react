@@ -27,7 +27,7 @@ const CampgroundDetails = (props) => {
     async function fetchUserData() {
       const res = await fetch("/getUser");
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
     }
     fetchUserData();
   };

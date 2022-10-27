@@ -52,21 +52,29 @@ const LoginPage = () => {
     const sendAPIData = async (userData) => {
       const options = {
         method: "POST",
-        body: JSON.stringify(userData),
+        mode: "cors",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
+        body: JSON.stringify(userData),
       };
       const res = await fetch("/login", options);
       const data = await res.json();
+      console.log(data);
       setUserInfo(data);
     };
     // console.log(`login creds: username: ${username}, password:${password}`);
-    sendAPIData({ username: username, password: password });
     setUsernameTouched(false);
     setPasswordTouched(false);
     setIsLoggedIn(true);
-    navigate(-1);
+    sendAPIData({ username: username, password: password });
+  };
+
+  const getUserHandler = async () => {
+    const res = await fetch("/getUser");
+    const data = await res.json();
+    console.log(data);
   };
 
   const usernameClass = usernameInputIsInvalid
@@ -114,6 +122,7 @@ const LoginPage = () => {
         <button disabled={!formIsValid}>Submit</button>
       </form>
       <Link to="/register">Not a user? Register here!</Link>{" "}
+      <button onClick={getUserHandler}>Get User</button>
     </Fragment>
   );
 };
