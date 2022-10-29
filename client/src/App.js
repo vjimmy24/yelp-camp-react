@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./UI/Navbar";
 import LoginPage from "./routes/Auth/LoginPage";
@@ -17,6 +17,20 @@ import AuthContext from "./Context/auth-context";
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useState({});
+  useEffect(() => {
+    const getLoggedinStatus = async () => {
+      const res = await fetch("/getUser");
+      const data = await res.json();
+      if (data.user === undefined) {
+        return setIsLoggedIn(false);
+      } else {
+        console.log(`logged in ${data.user} `);
+        setIsLoggedIn(true);
+      }
+    };
+    getLoggedinStatus();
+  }, []);
+
   return (
     <AuthContext.Provider
       value={{ isLoggedIn, setIsLoggedIn, userInfo, setUserInfo }}

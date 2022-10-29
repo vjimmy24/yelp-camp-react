@@ -69,6 +69,7 @@ const LoginPage = () => {
     setPasswordTouched(false);
     setIsLoggedIn(true);
     sendAPIData({ username: username, password: password });
+    // navigate(-1);
   };
 
   const getUserHandler = async () => {
@@ -87,17 +88,20 @@ const LoginPage = () => {
   return (
     <Fragment>
       {" "}
-      <h1>Login</h1>
+      <h1>Welcome back, camper!</h1>
       <form action="" onSubmit={formSubmitHandler}>
         <div>
           <label htmlFor="username">Username</label>
-          <input
-            className={usernameClass}
-            type="text"
-            name="username"
-            onChange={usernameChangeHandler}
-            onBlur={usernameBlurHandler}
-          />
+          <div>
+            <input
+              className={usernameClass}
+              type="text"
+              name="username"
+              onChange={usernameChangeHandler}
+              onBlur={usernameBlurHandler}
+            />
+          </div>
+
           {/* {usernameInputIsInvalid && (
             <div>
               <p>Username is not valid.</p>
@@ -106,20 +110,24 @@ const LoginPage = () => {
         </div>
         <div>
           <label htmlFor="password">Password</label>
-          <input
-            className={passwordClass}
-            type="password"
-            name="password"
-            onChange={passwordChangeHandler}
-            onBlur={passwordBlurHandler}
-          />
-          {/* {passwordInputIsInvalid && (
+          <div>
+            <input
+              className={passwordClass}
+              type="password"
+              name="password"
+              onChange={passwordChangeHandler}
+              onBlur={passwordBlurHandler}
+            />
+            {/* {passwordInputIsInvalid && (
             <div>
               <p>Password is not valid.</p>
             </div>
           )} */}
+          </div>
         </div>
-        <button disabled={!formIsValid}>Submit</button>
+        <div>
+          <button disabled={!formIsValid}>Submit</button>
+        </div>
       </form>
       <Link to="/register">Not a user? Register here!</Link>{" "}
       <button onClick={getUserHandler}>Get User</button>

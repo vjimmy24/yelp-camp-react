@@ -2,6 +2,8 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
+console.log(process.env.SECRET);
+
 const express = require("express");
 const dbUrl = "mongodb://localhost:27017/yelp-camp-react";
 const mongoose = require("mongoose");
@@ -15,18 +17,20 @@ const { Review } = require("./models/review");
 const bodyParser = require("body-parser");
 const multer = require("multer");
 const MongoStore = require("connect-mongo");
-const fileStorageEngine = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "./uploads");
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + "--" + file.originalname);
-  },
-});
-const cors = require("cors");
-const upload = multer({ storage: fileStorageEngine });
 
-const secret = process.env.SECRET || "mangocat";
+const { storage } = require("./cloudinary/index");
+const upload = multer({ storage });
+// const fileStorageEngine = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, "./uploads");
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, Date.now() + "--" + file.originalname);
+//   },
+// });
+const cors = require("cors");
+
+const secret = "mangocat";
 require("./passportConfig")(passport);
 
 //<---------------------------------END OF IMPORTS--------------------------------->
@@ -51,8 +55,8 @@ const app = express();
 //Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(cors({ origin: "http://localhost:3000", credentials: true }));
-// app.options("*", cors);
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.options("*", cors);
 const store = MongoStore.create({
   mongoUrl: dbUrl,
   crypto: {
@@ -76,7 +80,7 @@ app.use(
     // },
   })
 );
-app.use(cookieParser(secret));
+// app.use(cookieParser(secret));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -95,6 +99,7 @@ app.post("/login", (req, res, next) => {
     else {
       req.login(user, (err) => {
         if (err) throw err;
+        //NEED res.send(req.user)
         res.send(req.user);
         console.log(`Logged in, user info: ${req.user}`);
       });
@@ -119,11 +124,11 @@ app.post("/register", (req, res) => {
   });
 });
 
-app.post("/logout", (req, res) => {
-  if (!req.user) {
-    console.log("not logged in.");
-    return;
-  }
+app.post("/logout", (req, res, next) => {
+  // if (!req.user) {
+  //   console.log("not logged in.");
+  //   return;
+  // }
   req.logout((err) => {
     if (err) {
       return next(err);
@@ -136,7 +141,7 @@ app.post("/logout", (req, res) => {
 });
 
 app.get("/getUser", (req, res) => {
-  console.log(req.session);
+  res.send({ user: req.user });
 });
 
 app.get("/api", (req, res) => {
@@ -144,14 +149,16 @@ app.get("/api", (req, res) => {
 });
 
 //Campground CRUD API
-app.post("/campground", upload.single("campImage"), async (req, res) => {
-  // console.log("creation request has been received!");
+app.post("/campground", upload.array("campImage"), async (req, res) => {
+  console.log("creation request has been received!");
   // res.status(200).send(req.file);
-  console.log(req.user);
-  // const newCampground = new Campground(req.body);
-  // newCampground.author = req.user._id;
-  // await newCampground.save();
-  // console.log(`Created new camp: ${newCampground}`);
+  // res.send(req.user);
+  // console.log(req.user);
+  console.log(req.files);
+  const newCampground = new Campground(req.body);
+  newCampground.author = req.user._id;
+  await newCampground.save();
+  console.log(`Created new camp: ${newCampground}`);
 });
 
 app.get("/campground", async (req, res) => {

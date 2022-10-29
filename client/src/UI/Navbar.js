@@ -27,26 +27,26 @@ const Navbar = () => {
             Want to list your campground?
           </NavLink>
         </li>
-        {/* {!isLoggedIn && ( */}
-        <li className={classes.navItem}>
-          <NavLink className={classes.NavLink} to="/login">
-            Login
-          </NavLink>
-        </li>
-        {/* )} */}
-        {/* {!isLoggedIn && ( */}
-        <li className={classes.navItem}>
-          <NavLink className={classes.NavLink} to={`/register`}>
-            Register
-          </NavLink>
-        </li>
-        {/* )} */}
+        {!isLoggedIn && (
+          <li className={classes.navItem}>
+            <NavLink className={classes.NavLink} to="/login">
+              Login
+            </NavLink>
+          </li>
+        )}
+        {!isLoggedIn && (
+          <li className={classes.navItem}>
+            <NavLink className={classes.NavLink} to={`/register`}>
+              Register
+            </NavLink>
+          </li>
+        )}
 
-        {/* {isLoggedIn && ( */}
-        <li className={classes.navItem}>
-          <LogoutButton className={classes.NavLink} />
-        </li>
-        {/* )} */}
+        {isLoggedIn && (
+          <li className={classes.navItem}>
+            <LogoutButton className={classes.NavLink} />
+          </li>
+        )}
       </ul>
     </div>
   );

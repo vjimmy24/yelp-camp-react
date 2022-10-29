@@ -4,10 +4,11 @@ import { Link } from "react-router-dom";
 const Campground = (props) => {
   return (
     <Fragment>
-      <p>
-        {props.title}, Location:{props.location}, Price: {props.price}{" "}
-        <Link to={`${props.id}`}>Details</Link>
-      </p>
+      <div>{props.title}</div> {props.location}
+      <div></div> Price: {props.price}
+      <div>
+        <Link to={`${props.id}`}>Info</Link>
+      </div>
     </Fragment>
   );
 };

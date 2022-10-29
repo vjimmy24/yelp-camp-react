@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import CampgroundDeleter from "./CampgroundDeleter";
 import AuthContext from "../../Context/auth-context";
+import classes from "./CampgroundDetails.module.css";
 
 const CampgroundDetails = (props) => {
   const { userInfo } = useContext(AuthContext);
@@ -33,18 +34,15 @@ const CampgroundDetails = (props) => {
   };
 
   return (
-    <div>
-      <h1>Details Page</h1>
+    <body className={classes.detailsBody}>
+      <h1>{campDetails.title}</h1>
 
-      {!isLoading && (
-        <h2>
-          {campDetails.title}, {campDetails.location}
-        </h2>
-      )}
+      {!isLoading && <h2>{campDetails.location}</h2>}
 
       <div>
-        {!isLoading && <p>Price: ${campDetails.price} (Per Night)</p>}
         {!isLoading && <p>{campDetails.description}</p>}
+
+        {!isLoading && <p>Price: ${campDetails.price} (Per Night)</p>}
       </div>
       <div>{!isLoading && <p>Listed by: {authorData.username}</p>}</div>
       {/* <div>
@@ -61,7 +59,7 @@ const CampgroundDetails = (props) => {
           <CampgroundDeleter id={id} />
         </div>
       )}
-    </div>
+    </body>
   );
 };
 

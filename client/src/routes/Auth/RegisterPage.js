@@ -73,7 +73,7 @@ const RegisterPage = () => {
 
   return (
     <Fragment>
-      <h1>Register</h1>
+      <h1>Welcome to YelpCamp!</h1>
       <form action="" onSubmit={formSubmitHandler}>
         <div>
           <label htmlFor="username">Username</label>

@@ -5,10 +5,7 @@ import { Link } from "react-router-dom";
 const CampgroundsList = () => {
   return (
     <Fragment>
-      <h1>Campgrounds</h1>
-      <div>
-        <Link to="new">Want to list a new campground?</Link>
-      </div>
+      {/* <div><Link to="new">Want to list a new campground?</Link></div> */}
       <CampgroundList />
     </Fragment>
   );

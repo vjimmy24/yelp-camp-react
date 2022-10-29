@@ -12,8 +12,11 @@ const CreateCampground = () => {
   const [formImage, setFormImage] = useState();
 
   const fileChangeHandler = (e) => {
-    console.log(e.target.files[0]);
-    setFormImage(e.target.files[0]);
+    // const fileList = e.target.files;
+    // console.log(fileList);
+    // // const imageArray = [...fileList];
+    setFormImage(e.target.files);
+    // setFormImage(e.target.files[0]);
   };
 
   const formSubmitHandler = (e) => {
@@ -23,53 +26,29 @@ const CreateCampground = () => {
     fd.append("location", formLocation.current.value);
     fd.append("description", formDescription.current.value);
     fd.append("price", formPrice.current.value);
-    fd.append("campImage", formImage);
-    // console.log(Array.from(fd));
-
-    const sendAPIData = async (campData) =>
-      // campData = {
-      //   title: "",
-      //   location: "",
-      //   description: "",
-      //   price: "",
-      //   image: {},
-      // }
-      {
-        // const formData = new formData();
-        // formData.append("image", formImage, formImage.name);
-        const options = {
-          method: "POST",
-          body: campData,
-          mode: "cors",
-          // headers: {
-          //   "Content-Type": "multipart/form-data; boundary=XXX",
-          // },
-          credentials: "include",
-        };
-        // axios
-        //   .post("/campgrounds", JSON.stringify(formData))
-        //   .then((res) => console.log(res))
-        //   .catch((e) => console.log(e));
-        try {
-          await fetch("/campground", options);
-          console.log("success");
-        } catch (e) {
-          console.log(e);
-        }
-        // const data = await res.json();
-        // console.log(data);
+    for (var x = 0; x < formImage.length; x++) {
+      const file = formImage[x];
+      fd.append("campImage", file);
+    }
+    console.log(Array.from(fd));
+    const sendAPIData = async (campData) => {
+      const options = {
+        method: "POST",
+        body: campData,
+        mode: "cors",
+        // headers: {
+        //   "Content-Type": "multipart/form-data; boundary=XXX",
+        // },
+        credentials: "include",
       };
-
+      try {
+        await fetch("/campground", options);
+        console.log("success");
+      } catch (e) {
+        console.log(e);
+      }
+    };
     sendAPIData(fd);
-    // sendAPIData({
-    //   title: formTitle.current.value,
-    //   location: formLocation.current.value,
-    //   description: formDescription.current.value,
-    //   price: formPrice.current.value,
-    //   // image: formImage.current.files,
-    //   image: formImage,
-    // });
-
     navigate("/campgrounds");
   };
 
@@ -101,6 +80,7 @@ const CreateCampground = () => {
           name="campImage"
           id="campImage"
           onChange={fileChangeHandler}
+          multiple
         />
       </div>
       <button>Submit</button>

@@ -1,6 +1,6 @@
 .navBar {
   width: 100%;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   animation: fadeIn 3s;
   display: block;
 }
@@ -12,6 +12,8 @@ ul {
 }
 .navItem {
   font-size: large;
+  font-size: 1.2rem;
+
   margin-top: 0.5rem;
   margin-left: 1rem;
   margin-right: 2rem;

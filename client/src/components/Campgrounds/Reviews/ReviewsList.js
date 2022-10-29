@@ -2,6 +2,7 @@ import { React, Fragment, useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Review from "./Review";
 import ReviewContext from "../../../Context/review-context";
+import classes from "./ReviewsList.module.css";
 
 const ReviewsList = () => {
   const { id } = useParams();
