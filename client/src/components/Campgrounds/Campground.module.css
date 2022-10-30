@@ -1,0 +1,31 @@
+.campgroundContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.campImage {
+  text-align: left;
+  margin-left: 1rem;
+}
+
+.campDetails {
+  margin-left: 1rem;
+  width: 100%;
+}
+
+.campTitle {
+  margin: 0 0 0 0;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.detailsLink {
+  text-decoration: none;
+  color: rgb(93, 155, 93);
+}
+
+.detailsLink:hover {
+  border-bottom: 1.5px solid rgb(93, 155, 93);
+}

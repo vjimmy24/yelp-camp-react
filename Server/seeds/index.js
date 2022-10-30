@@ -36,20 +36,20 @@ const seedDB = async function () {
       //     ],
       //   },
 
-      //   images: [
-      //     {
-      //       url: "https://res.cloudinary.com/digfn29ss/image/upload/v1660589364/YelpCamp/m8wb0o4ah83odqm2ws4d.webp",
-      //       fileName: "YelpCamp/m8wb0o4ah83odqm2ws4d",
-      //     },
-      //     {
-      //       url: "https://res.cloudinary.com/digfn29ss/image/upload/v1660589364/YelpCamp/myfmpjo5dxu2pl6xdj3n.jpg",
-      //       fileName: "YelpCamp/myfmpjo5dxu2pl6xdj3n",
-      //     },
-      //     {
-      //       url: "https://res.cloudinary.com/digfn29ss/image/upload/v1660589365/YelpCamp/qeeqe1lfthdwfaynrt9g.jpg",
-      //       fileName: "YelpCamp/qeeqe1lfthdwfaynrt9g",
-      //     },
-      //   ],
+      images: [
+        {
+          url: "https://res.cloudinary.com/digfn29ss/image/upload/v1667064669/yelpcampreact/pykprluvkgfcbbwkvyam.jpg",
+          fileName: "yelpcampreact/pykprluvkgfcbbwkvyam",
+        },
+        // {
+        //   url: "https://res.cloudinary.com/digfn29ss/image/upload/v1660589364/YelpCamp/myfmpjo5dxu2pl6xdj3n.jpg",
+        //   fileName: "YelpCamp/myfmpjo5dxu2pl6xdj3n",
+        // },
+        // {
+        //   url: "https://res.cloudinary.com/digfn29ss/image/upload/v1660589365/YelpCamp/qeeqe1lfthdwfaynrt9g.jpg",
+        //   fileName: "YelpCamp/qeeqe1lfthdwfaynrt9g",
+        // },
+      ],
     });
     await newCamp.save();
 

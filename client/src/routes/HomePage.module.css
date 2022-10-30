@@ -1,7 +1,8 @@
 .header {
   text-align: center;
   margin-top: 300px;
-  font-weight: 700;
+  font-weight: 1000;
+  font-size: 2.5rem;
   animation: header-load 650ms ease-in;
   animation-fill-mode: forwards;
   transform: translateY(-20px);
@@ -21,10 +22,30 @@
   color: rgb(93, 155, 93);
 }
 
+.bodyBottom {
+  margin-top: 1.5rem;
+}
+
 .flexContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.campgroundButton {
+  background: none;
+  color: rgb(204, 142, 19);
+  border: none;
+  margin-top: 1rem;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  text-decoration: none;
+}
+
+.campgroundButton:hover {
+  border-bottom: 2px rgb(93, 155, 93) solid;
 }
 
 @keyframes header-load {

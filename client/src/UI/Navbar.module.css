@@ -4,7 +4,9 @@
   animation: fadeIn 3s;
   display: block;
 }
+
 ul {
+  background-color: transparent;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -19,7 +21,7 @@ ul {
   margin-right: 2rem;
   display: inline-block;
   text-decoration: none;
-  border-bottom: solid 1px white;
+  border-bottom: solid 1px transparent;
   text-align: center;
 }
 

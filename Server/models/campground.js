@@ -21,7 +21,7 @@ const campgroundSchema = new Schema({
   images: [
     {
       url: String,
-      filename: String,
+      fileName: String,
     },
   ],
   author: {

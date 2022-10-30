@@ -14,6 +14,7 @@ const LogoutButton = () => {
       });
     };
     sendLogoutRequest();
+    navigate("");
     setIsLoggedIn(false);
   };
   return (

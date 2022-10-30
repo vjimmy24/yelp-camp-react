@@ -1,13 +1,27 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
+import classes from "./Campground.module.css";
 
 const Campground = (props) => {
   return (
     <Fragment>
-      <div>{props.title}</div> {props.location}
-      <div></div> Price: {props.price}
-      <div>
-        <Link to={`${props.id}`}>Info</Link>
+      <div className={classes.campgroundContainer}>
+        <div className={classes.imageContainer}>
+          <img src={`${props.image.url}`} alt="" />
+        </div>
+        <div className={classes.campDetails}>
+          <p className={classes.campTitle}> {props.title}</p>
+          <div>
+            {props.location}
+            <div>Price: {props.price}</div>
+
+            <div>
+              <Link className={classes.detailsLink} to={`${props.id}`}>
+                Info
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </Fragment>
   );

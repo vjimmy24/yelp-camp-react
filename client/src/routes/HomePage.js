@@ -12,9 +12,18 @@ const HomePage = () => {
           {" "}
           <p className={classes.lead}>
             YelpCamp is a website designed to satisfy your camping hunger! At
-            YelpCamp, you can find beautiful, scenic, and atmospheric campsites
-            at different pricepoints that will amaze you. A perfect fit, if you
-            ask me.
+            YelpCamp, you will find beautiful, scenic, and atmospheric campsites
+            at different pricepoints that will amaze you.
+            <div className={classes.bodyBottom}>
+              A perfect fit, if you ask me.
+            </div>
+            <div>
+              <button>
+                <Link className={classes.campgroundButton} to="/campgrounds">
+                  View Campgrounds
+                </Link>
+              </button>
+            </div>
           </p>{" "}
         </div>
       </div>

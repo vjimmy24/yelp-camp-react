@@ -1,9 +1,6 @@
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
-
-console.log(process.env.SECRET);
-
 const express = require("express");
 const dbUrl = "mongodb://localhost:27017/yelp-camp-react";
 const mongoose = require("mongoose");
@@ -152,11 +149,15 @@ app.get("/api", (req, res) => {
 app.post("/campground", upload.array("campImage"), async (req, res) => {
   console.log("creation request has been received!");
   // res.status(200).send(req.file);
-  // res.send(req.user);
+  res.send(req.user);
   // console.log(req.user);
   console.log(req.files);
   const newCampground = new Campground(req.body);
   newCampground.author = req.user._id;
+  newCampground.images = req.files.map((img) => ({
+    url: img.path,
+    fileName: img.filename,
+  }));
   await newCampground.save();
   console.log(`Created new camp: ${newCampground}`);
 });

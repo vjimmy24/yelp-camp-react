@@ -11,14 +11,16 @@ const CampgroundDetails = (props) => {
   const [isLoading, setisLoading] = useState(false);
   const [userData, setUserData] = useState(null);
   const [authorData, setAuthorData] = useState("");
+  const [campImages, setCampImages] = useState([]);
   useEffect(() => {
     setisLoading(true);
     async function fetchAPIData() {
       const res = await fetch(`/campgrounddetails/${id}`);
       const data = await res.json();
-      // console.log(data.foundCamp[0].author[0].username);
+      console.log(data.foundCamp);
       setCampDetails(data.foundCamp[0]);
       setAuthorData(data.foundCamp[0].author[0]);
+      setCampImages(data.foundCamp[0].images);
     }
     fetchAPIData().catch(console.error);
     setisLoading(false);
@@ -35,6 +37,9 @@ const CampgroundDetails = (props) => {
 
   return (
     <body className={classes.detailsBody}>
+      <div>
+        <img src={`${campImages[0]?.url}`} alt="" />
+      </div>
       <h1>{campDetails.title}</h1>
 
       {!isLoading && <h2>{campDetails.location}</h2>}

@@ -8,13 +8,14 @@ const CampgroundList = () => {
     async function fetchAPIData() {
       const res = await fetch("/campground");
       const data = await res.json();
+      console.log(data);
       setCampData(data);
     }
     fetchAPIData();
     //use relative route since we defined the proxy to be port 5000 in package.json\
     //Setting campdata as a dependency allows us to see the new camp on navigation
     //creates infinite request loop though..
-  }, [campData]);
+  }, []);
   return (
     <Fragment>
       <header>
@@ -28,6 +29,7 @@ const CampgroundList = () => {
             <div className={classes.campContainer} key={campground._id}>
               <Campground
                 id={campground._id}
+                image={campground.images[0]}
                 title={campground.title}
                 location={campground.location}
                 price={campground.price}
