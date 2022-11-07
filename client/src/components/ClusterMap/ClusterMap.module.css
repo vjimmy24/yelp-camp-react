@@ -1,0 +1,8 @@
+#clusterMap {
+  text-align: right;
+  width: 200px;
+}
+
+.mapboxgl-map {
+  text-align: center;
+}

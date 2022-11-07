@@ -32,17 +32,17 @@ const campgroundSchema = new Schema({
     type: [{ type: Schema.Types.ObjectId, ref: "Review" }],
   },
   // images: [imageSchema],
-  // geometry: {
-  //   type: {
-  //     type: String,
-  //     enum: ["Point"],
-  //     required: true,
-  //   },
-  //   coordinates: {
-  //     type: [Number],
-  //     required: true,
-  //   },
-  // },
+  geometry: {
+    type: {
+      type: String,
+      enum: ["Point"],
+      required: true,
+    },
+    coordinates: {
+      type: [Number],
+      required: true,
+    },
+  },
 });
 
 campgroundSchema.post("findOneAndDelete", async function (res) {

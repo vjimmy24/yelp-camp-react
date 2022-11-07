@@ -1,0 +1,50 @@
+.formh1 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.formContainer {
+  padding: 1rem 3rem 2rem 2rem;
+  margin-top: 4rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 25%;
+  transform: translate(-50%, -60%);
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  background-color: rgba(204, 142, 19, 0.3);
+  animation: fadeIn 0.5s;
+}
+.campForm {
+  text-align: center;
+}
+
+.campLabel {
+  font-size: 1.5rem;
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+
+.formInput {
+  width: 100%;
+  border: 0.5px solid rgba(204, 142, 19, 0.7);
+  padding: 0.4rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  font-family: "Roboto Slab";
+}
+
+textarea {
+  height: 4rem;
+  font-family: "Roboto Slab";
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

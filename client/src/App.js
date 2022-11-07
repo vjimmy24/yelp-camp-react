@@ -9,6 +9,7 @@ import CampgroundsPage from "./routes/Campgrounds/CampgroundsPage";
 import NewCampground from "./routes/Campgrounds/NewCampground";
 import HomePage from "./routes/HomePage";
 import AuthContext from "./Context/auth-context";
+import MapPage from "./routes/Campgrounds/MapPage";
 
 // const routerProvider = (
 
@@ -42,6 +43,7 @@ const App = () => {
         <Route path="campgrounds/new" element={<NewCampground />} />
         <Route path="campgrounds/:id" element={<CampgroundDetailsPage />} />
         <Route path="campgrounds/:id/edit" element={<CampgroundEditPage />} />
+        <Route path="map" element={<MapPage />} />
         <Route path="register" element={<RegisterPage />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />

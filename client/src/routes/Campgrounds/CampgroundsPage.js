@@ -1,6 +1,8 @@
 import React, { Fragment } from "react";
-import CampgroundList from "../../components/Campgrounds/CampgroundList";
 import { Link } from "react-router-dom";
+
+import CampgroundList from "../../components/Campgrounds/CampgroundList";
+import ClusterMap from "../../components/ClusterMap/ClusterMap";
 
 const CampgroundsList = () => {
   return (

@@ -4,7 +4,6 @@ import CreateCampground from "../../components/Campgrounds/CampgroundForm/Create
 const NewCampground = () => {
   return (
     <Fragment>
-      <h1>Want to list your campground?</h1>
       <CreateCampground />
     </Fragment>
   );

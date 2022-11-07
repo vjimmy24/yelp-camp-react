@@ -28,13 +28,13 @@ const seedDB = async function () {
         "Lorem ipsum dolor sit amet consectetur adipisicing elit.Magni, nihil molestias.Aliquid, iste! Similique ut molestiae vero minus assumenda at cupiditate itaque mollitia debitis corrupti, numquam non officiis id totam.",
       price: price,
       author: "6349a45e12ae2fa58937cb9f",
-      //   geometry: {
-      //     type: "Point",
-      //     coordinates: [
-      //       cities[random1000].longitude,
-      //       cities[random1000].latitude,
-      //     ],
-      //   },
+      geometry: {
+        type: "Point",
+        coordinates: [
+          cities[random1000].longitude,
+          cities[random1000].latitude,
+        ],
+      },
 
       images: [
         {

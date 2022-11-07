@@ -1,5 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, Fragment } from "react";
 import { useNavigate } from "react-router-dom";
+import classes from "./CampgroundForm.module.css";
 
 const CreateCampground = () => {
   const navigate = useNavigate();
@@ -55,36 +56,77 @@ const CreateCampground = () => {
   // makeCampground();
 
   return (
-    <form onSubmit={formSubmitHandler} encType="multipart/form-data">
-      <div>
-        <label htmlFor="title">Campground Title</label>
-        <input type="Title" name="title" ref={formTitle} />
-      </div>
-      <div>
-        <label htmlFor="location">Location</label>
-        <input type="text" name="location" ref={formLocation} />
-      </div>
-      <div>
-        <label htmlFor="description">Description</label>
-        <textarea name="location" ref={formDescription}></textarea>
-      </div>
-      <div>
-        <label htmlFor="price">Price</label>
-        <input type="number" name="price" ref={formPrice} />
-      </div>
+    <Fragment>
+      <div className={classes.formContainer}>
+        <h1 className={classes.formh1}>List Your Campground</h1>
 
-      <div>
-        <label htmlFor="campImage">Image</label>
-        <input
-          type="file"
-          name="campImage"
-          id="campImage"
-          onChange={fileChangeHandler}
-          multiple
-        />
+        <form
+          className={classes.campForm}
+          onSubmit={formSubmitHandler}
+          encType="multipart/form-data"
+        >
+          <div>
+            <div className={classes.campLabel}>
+              <label htmlFor="title">Title</label>
+            </div>
+            <input
+              className={classes.formInput}
+              type="Title"
+              name="title"
+              ref={formTitle}
+            />
+          </div>
+          <div>
+            <div className={classes.campLabel}>
+              <label htmlFor="location">Location</label>
+            </div>
+            <input
+              className={classes.formInput}
+              type="text"
+              name="location"
+              ref={formLocation}
+            />
+          </div>
+          <div>
+            <div className={classes.campLabel}>
+              <label htmlFor="description">Description</label>
+            </div>
+            <textarea
+              className={classes.formInput}
+              name="location"
+              ref={formDescription}
+            ></textarea>
+          </div>
+          <div>
+            <div className={classes.campLabel}>
+              <label htmlFor="price">Price</label>
+            </div>
+
+            <input
+              className={classes.formInput}
+              type="number"
+              name="price"
+              ref={formPrice}
+            />
+          </div>
+
+          <div className={classes.campLabel}>
+            <div>
+              <label htmlFor="campImage">Images</label>
+            </div>
+            <input
+              className={classes.formInput}
+              type="file"
+              name="campImage"
+              id="campImage"
+              onChange={fileChangeHandler}
+              multiple
+            />
+          </div>
+          <button>Submit</button>
+        </form>
       </div>
-      <button>Submit</button>
-    </form>
+    </Fragment>
   );
 };
 

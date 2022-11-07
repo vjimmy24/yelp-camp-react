@@ -6,10 +6,9 @@ import classes from "./HomePage.module.css";
 const HomePage = () => {
   return (
     <Fragment>
-      <div className={classes.main}>
+      <div>
         <h1 className={classes.header}>Welcome to YelpCamp!</h1>
         <div className={classes.flexContainer}>
-          {" "}
           <p className={classes.lead}>
             YelpCamp is a website designed to satisfy your camping hunger! At
             YelpCamp, you will find beautiful, scenic, and atmospheric campsites
@@ -18,11 +17,11 @@ const HomePage = () => {
               A perfect fit, if you ask me.
             </div>
             <div>
-              <button>
+              {/* <button>
                 <Link className={classes.campgroundButton} to="/campgrounds">
                   View Campgrounds
                 </Link>
-              </button>
+              </button> */}
             </div>
           </p>{" "}
         </div>

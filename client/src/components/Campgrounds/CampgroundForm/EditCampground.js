@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useState, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import classes from "./CampgroundForm.module.css";
 
 const EditCampground = () => {
   const navigate = useNavigate();
