@@ -37,16 +37,25 @@ const CampgroundDetails = (props) => {
 
   return (
     <body className={classes.detailsBody}>
-      <div>
-        <img src={`${campImages[0]?.url}`} alt="" />
+      <div className={classes.detailElementContainer}>
+        <img
+          className={classes.detailsImage}
+          src={`${campImages[0]?.url}`}
+          alt=""
+        />
       </div>
-      <h1>{campDetails.title}</h1>
+      <div className={classes.detailElementContainer}>
+        <h2 className={classes.detailsTitle}>{campDetails.title}</h2>
+      </div>
 
-      {!isLoading && <h2>{campDetails.location}</h2>}
+      {!isLoading && (
+        <h3 className={classes.detailsLocation}>{campDetails.location}</h3>
+      )}
 
-      <div>
+      <div className={classes.detailElementContainer}>
         {!isLoading && <p>{campDetails.description}</p>}
-
+      </div>
+      <div className={classes.detailElementContainer}>
         {!isLoading && <p>Price: ${campDetails.price} (Per Night)</p>}
       </div>
       <div>{!isLoading && <p>Listed by: {authorData.username}</p>}</div>

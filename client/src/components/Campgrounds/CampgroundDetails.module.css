@@ -1,4 +1,29 @@
 .detailsBody {
   margin-left: 3rem;
-  margin-top: 3rem;
+  margin-top: 5rem;
+  width: 25%;
+  border: 3.5px solid black;
+  padding: 1rem;
+  padding-left: 2rem;
+  text-align: left;
+  border-radius: 5%;
+  box-shadow: black 4px 4px;
+  background-color: white;
+  background-image: none;
+}
+
+.detailElementContainer {
+  /* border-bottom: 2px solid rgba(50.2, 50.2, 0, 0.5); */
+  margin-top: 1rem;
+}
+.detailsTitle {
+  text-align: left;
+  margin: 0;
+}
+.detailsLocation {
+}
+.detailsImage {
+  padding-bottom: 1rem;
+}
+.detailsDescription {
 }

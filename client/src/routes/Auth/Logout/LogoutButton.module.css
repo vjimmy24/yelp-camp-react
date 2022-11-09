@@ -1,5 +1,12 @@
 .NavLink {
-  color: rgb(204, 142, 19);
+  /* color: rgb(204, 142, 19); */
+  color: black;
   text-decoration: none;
   text-align: center;
+  padding: 0.25rem;
+}
+
+.NavLink:hover {
+  box-shadow: 2.5px 3.5px rgba(0, 0, 0, 0.85);
+  background-color: rgba(204, 254, 152, 0.5);
 }

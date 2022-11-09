@@ -7,7 +7,11 @@ const Campground = (props) => {
     <Fragment>
       <div className={classes.campgroundContainer}>
         <div className={classes.imageContainer}>
-          <img src={`${props.image.url}`} alt="" />
+          <img
+            className={classes.campImage}
+            src={`${props.image.url}`}
+            alt=""
+          />
         </div>
         <div className={classes.campDetails}>
           <p className={classes.campTitle}> {props.title}</p>

@@ -3,15 +3,16 @@
 }
 
 .formBody {
-  border: 2px black solid;
+  border: 3px black solid;
   border-radius: 0.5rem;
   padding: 1.5rem 3rem 3rem 3rem;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -60%);
-  background-color: rgba(93, 155, 93, 0.2);
+  background-color: #eac276;
   animation: fadeIn 1s;
+  box-shadow: 5px 5px black;
 }
 
 .arrow {
@@ -55,7 +56,7 @@ h2 {
 .formSubmitButton {
   font-size: 1.2rem;
   color: rgb(93, 155, 93);
-  background: none;
+  background: white;
   border: 1.75px rgba(93, 155, 93, 0.6) solid;
   border-radius: 0.7rem;
   margin-top: 1.2rem;
@@ -68,7 +69,7 @@ h2 {
 }
 
 .formSubmitButton:hover {
-  background-color: rgba(93, 155, 93, 0.4);
+  background-color: rgba(180, 214, 180, 0.1);
 }
 
 .formLabel {

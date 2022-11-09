@@ -92,7 +92,7 @@ const EditCampground = () => {
         </div>
 
         <div>
-          <label htmlFor="image">Image</label>
+          <label htmlFor="image">Campground Images</label>
           <input
             type="text"
             name="image"

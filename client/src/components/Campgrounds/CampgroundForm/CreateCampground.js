@@ -112,7 +112,7 @@ const CreateCampground = () => {
 
           <div className={classes.campLabel}>
             <div>
-              <label htmlFor="campImage">Images</label>
+              <label htmlFor="campImage">Campground Images</label>
             </div>
             <input
               className={classes.formInput}

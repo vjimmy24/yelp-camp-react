@@ -6,12 +6,13 @@
 }
 
 .campImage {
-  text-align: left;
-  margin-left: 1rem;
+  border: 1px solid transparent;
+  border-radius: 5%;
+  margin-right: 0.25rem;
 }
 
 .campDetails {
-  margin-left: 1rem;
+  margin-left: 1.25rem;
   width: 100%;
 }
 

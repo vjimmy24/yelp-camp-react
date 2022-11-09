@@ -8,12 +8,14 @@ main {
   animation-fill-mode: forwards;
   opacity: 1;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 header {
+  color: black;
   margin: 0rem 3rem;
   margin-top: 3rem;
-  margin-left: 10rem;
+  margin-left: 8rem;
   animation: header-load 700ms ease-in;
   animation-fill-mode: forwards;
 }
@@ -29,8 +31,9 @@ header {
   padding-right: 5rem;
   margin-right: 5rem;
 }
+
 .campContainer {
-  border-top: olive solid 2px;
+  border-top: #95744b solid 2px;
   margin: 0.5rem 3.5rem 0.5rem 4rem;
   padding: 1rem 0rem 1rem 1rem;
   width: 80%;

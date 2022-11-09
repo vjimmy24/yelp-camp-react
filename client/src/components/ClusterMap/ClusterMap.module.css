@@ -6,3 +6,39 @@
 .mapboxgl-map {
   text-align: center;
 }
+
+.cluster_marker {
+  color: #fff;
+  background: #1978c8;
+  border-radius: 100%;
+  padding: 6px 10px 6px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cluster_marker:hover {
+  cursor: pointer;
+}
+
+.camp_marker:hover {
+  cursor: pointer;
+}
+
+.campInfo {
+  width: 100%;
+}
+
+.campPopup {
+  padding: 0;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  max-width: fit-content;
+}
+
+.PopupTextDescription {
+}
+
+.mapboxgl-popup-content {
+  background-color: red;
+}

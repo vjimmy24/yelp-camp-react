@@ -1,4 +1,5 @@
 import CampgroundDetails from "../../components/Campgrounds/CampgroundDetails";
+import classes from "./CampgroundDetailsPage.module.css";
 import ReviewForm from "../../components/Campgrounds/Reviews/ReviewForm";
 import ReviewsList from "../../components/Campgrounds/Reviews/ReviewsList";
 import { React, useContext, useState } from "react";
@@ -12,10 +13,9 @@ const CampgroundDetailsPage = () => {
 
   return (
     <ReviewContext.Provider value={{ reviews, setReviews }}>
-      <div>
-        <CampgroundDetails />
-
-        <h2>Reviews</h2>
+      <CampgroundDetails />
+      <section className={classes.reviewsContainer}>
+        <h2 className={classes.reviewHeader}>Reviews</h2>
         {!isLoggedIn && (
           <div>
             {" "}
@@ -29,7 +29,7 @@ const CampgroundDetailsPage = () => {
         <ReviewsList />
         {isLoggedIn && <h2>Want to leave a review?</h2>}
         {isLoggedIn && <ReviewForm />}
-      </div>
+      </section>
     </ReviewContext.Provider>
   );
 };
