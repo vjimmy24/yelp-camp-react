@@ -27,7 +27,9 @@ const ReviewsList = () => {
   }, [id, reviews, setReviews]);
   //   console.log(reviewData);
   const reviewArray = reviews?.map((review) => (
-    <Review key={review._id} rating={review.rating} review={review.body} />
+    <div className={classes.reviewContainer} key={review._id}>
+      <Review rating={review.rating} review={review.body} />
+    </div>
   ));
   return <Fragment>{reviewArray}</Fragment>;
 };

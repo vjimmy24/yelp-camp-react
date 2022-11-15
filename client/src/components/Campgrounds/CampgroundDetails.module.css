@@ -1,15 +1,38 @@
+.detailsMain {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
+  width: 100%;
+  animation: list-load 650ms ease-in;
+  animation-fill-mode: forwards;
+}
+
+.backButton {
+  margin-top: 4rem;
+  margin-left: 4rem;
+  display: inline-block;
+  margin-bottom: 0rem;
+}
+
 .detailsBody {
-  margin-left: 3rem;
-  margin-top: 5rem;
-  width: 25%;
-  border: 3.5px solid black;
+  text-align: center;
+  margin-left: 4rem;
+  margin-bottom: 5rem;
+  margin-right: 6rem;
   padding: 1rem;
   padding-left: 2rem;
-  text-align: left;
-  border-radius: 5%;
-  box-shadow: black 4px 4px;
+  width: 30%;
+
+  border: 2.2px solid black;
+  border-radius: 0%;
+  box-shadow: black 3px 5px;
   background-color: white;
   background-image: none;
+}
+
+.detailsMapContainer {
+  justify-self: start;
+  box-shadow: 2px 2px black;
 }
 
 .detailElementContainer {
@@ -17,13 +40,61 @@
   margin-top: 1rem;
 }
 .detailsTitle {
-  text-align: left;
-  margin: 0;
+  width: 70%;
+  padding-bottom: 1rem;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  font-size: 2rem;
+  border-bottom: 1px solid grey;
 }
 .detailsLocation {
+  display: block;
+  margin: 0 auto;
+  margin-top: 1rem;
+  width: 70%;
 }
+
 .detailsImage {
-  padding-bottom: 1rem;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 2rem;
+  max-width: 700px;
+  max-height: 700px;
+  border-radius: 10px;
+  width: 60%;
+
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .detailsDescription {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  width: 70%;
+}
+
+.detailsPrice {
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+.detailsAuthor {
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+@keyframes list-load {
+  0% {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
 }

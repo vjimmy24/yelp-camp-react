@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import CampgroundList from "../../components/Campgrounds/CampgroundList";
 import ClusterMap from "../../components/ClusterMap/ClusterMap";
 
-const CampgroundsList = () => {
+const CampgroundsListPage = () => {
   return (
     <Fragment>
       {/* <div><Link to="new">Want to list a new campground?</Link></div> */}
@@ -13,4 +13,4 @@ const CampgroundsList = () => {
   );
 };
 
-export default CampgroundsList;
+export default CampgroundsListPage;

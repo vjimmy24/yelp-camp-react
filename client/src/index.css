@@ -1,22 +1,31 @@
 body {
   font-family: "Roboto Slab", serif;
-  background-image: radial-gradient(
+  /* background-image: radial-gradient(
     circle farthest-corner at 50.7% 54%,
     rgba(204, 254, 152, 1) 0%,
     rgba(229, 253, 190, 1) 92.4%
-  );
+  ); */
+  /* 
+  background-color: #8bc6ec;
+  background-image: linear-gradient(135deg, #8bc6ec 0%, #9599e2 100%); */
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height: 100%;
 }
 
 html,
 body {
-  max-width: 100%;
-  overflow-x: hidden !important;
+  overflow-y: hidden;
+  /* max-width: 100%;
+  height: auto; */
+  /* overflow-x: hidden !important; */
+  height: auto;
+  height: 100vh;
 }
-
+#root {
+  height: 100vh;
+  overflow-y: auto;
+}
 /* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

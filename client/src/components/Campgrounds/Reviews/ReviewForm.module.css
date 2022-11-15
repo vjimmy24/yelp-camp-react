@@ -1,0 +1,28 @@
+.reviewFormContainer {
+  border: 1px solid grey;
+  display: inline-block;
+  padding: 1rem;
+  margin-bottom: 5rem;
+  box-shadow: 3px 5px black;
+}
+
+.reviewFormElement {
+  margin-bottom: 0.5rem;
+}
+.reviewTextArea {
+  width: 25rem;
+  height: 7rem;
+}
+
+.reviewButton {
+  text-decoration: none;
+  border-radius: 0.5rem;
+  background-color: none;
+  padding: 0.4rem 0.4rem;
+}
+
+.reviewButton:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px;
+  background-color: #c4e0e6;
+}

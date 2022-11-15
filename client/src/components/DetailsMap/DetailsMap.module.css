@@ -1,0 +1,7 @@
+.detailsMapContainer {
+  text-align: left;
+}
+
+.detailsPopUp:hover {
+  cursor: pointer;
+}

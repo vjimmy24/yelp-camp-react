@@ -1,0 +1,10 @@
+.reviewContainer {
+  margin-top: 2rem;
+  border-top: 1px solid grey;
+  margin-right: 4rem;
+}
+
+.reviewContainer:last-of-type {
+  margin-bottom: 3rem;
+  border-bottom: 1px solid grey;
+}

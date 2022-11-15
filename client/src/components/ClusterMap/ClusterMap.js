@@ -1,19 +1,22 @@
-import { React, useState, useRef, useEffect } from "react";
+import { React, useState, useRef, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import ReactMapGL, { Marker, FlyToInterpolator, Popup } from "react-map-gl";
 import useSupercluster from "use-supercluster";
 import CampContext from "../../Context/camp-context";
-import { GiCampingTent } from "react-icons/gi";
+import { FaMapMarkerAlt } from "react-icons/fa";
 import { IconContext } from "react-icons";
+import HoverContext from "../../Context/hover-context";
 
 import classes from "./ClusterMap.module.css";
 
 const ClusterMap = (props) => {
+  // const { isHovering } = useContext(HoverContext);
+  // console.log(isHovering);
   const [viewport, setViewport] = useState({
     latitude: 39.8283,
     longitude: -92.5795,
-    width: "60vw",
-    height: "80vh",
+    width: "50vw",
+    height: "65vh",
     zoom: 3.5,
   });
   const mapRef = useRef();
@@ -146,13 +149,16 @@ const ClusterMap = (props) => {
               <div
                 className={classes.camp_marker}
                 onClick={(e) => {
+                  if (selectedCamp) {
+                    setSelectedCamp(null);
+                  }
                   setSelectedCamp(cluster);
                 }}
               >
                 <IconContext.Provider
                   value={{ color: "orange", size: "1.5rem" }}
                 >
-                  <GiCampingTent />
+                  <FaMapMarkerAlt />
                 </IconContext.Provider>
               </div>
             </Marker>
@@ -161,8 +167,11 @@ const ClusterMap = (props) => {
 
         {selectedCamp && (
           <Popup
+            offsetLeft={10}
+            offsetTop={-10}
             latitude={selectedCamp.geometry.coordinates[1]}
             longitude={selectedCamp.geometry.coordinates[0]}
+            anchor="left"
             onClose={() => {
               setSelectedCamp(null);
             }}
@@ -170,9 +179,14 @@ const ClusterMap = (props) => {
             <div className={classes.campPopup}>
               <h3>{selectedCamp.properties.name}</h3>
               <p>{selectedCamp.properties.location}</p>
-              <img src={selectedCamp.properties.image} alt="" />
+              <img
+                className={classes.popupImage}
+                src={selectedCamp.properties.image}
+                alt=""
+              />
               <p className={classes.PopupTextDescription}>
-                {selectedCamp.properties.description}{" "}
+                {selectedCamp.properties.description.substring(0, 90)}
+                {"..."}
                 <Link to={`${selectedCamp.properties.id}`}>More</Link>
               </p>
             </div>

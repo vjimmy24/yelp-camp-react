@@ -25,6 +25,10 @@
   cursor: pointer;
 }
 
+.camp_marker.highlightedCamp {
+  border: 3px solid red;
+}
+
 .campInfo {
   width: 100%;
 }
@@ -35,8 +39,17 @@
   margin-right: 1rem;
   max-width: fit-content;
 }
+.campPopup h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0;
+}
+.popupImage {
+  max-width: 200px;
+  max-height: 170px;
+}
 
 .PopupTextDescription {
+  font-size: 0.9rem;
 }
 
 .mapboxgl-popup-content {

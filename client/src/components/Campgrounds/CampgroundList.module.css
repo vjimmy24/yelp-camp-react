@@ -1,5 +1,4 @@
-main {
-  width: 100%;
+.campListMain {
   display: flex;
   flex-direction: row;
   margin-left: 3rem;
@@ -7,38 +6,47 @@ main {
   animation: list-load 650ms ease-in;
   animation-fill-mode: forwards;
   opacity: 1;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  /* overflow-x: hidden; */
 }
 
-header {
+.listLink {
+  text-decoration: none;
   color: black;
-  margin: 0rem 3rem;
-  margin-top: 3rem;
+  width: 90%;
+  height: 90%;
+}
+
+.header {
+  color: black;
+  font-size: 2.4rem;
+  margin-top: 6rem;
   margin-left: 8rem;
+  margin-bottom: 0rem;
   animation: header-load 700ms ease-in;
   animation-fill-mode: forwards;
 }
 
 .listContainer {
-  display: flex;
-  flex-direction: column;
+  border: 3px solid transparent;
 }
 
 .mapContainer {
-  display: flex;
-  flex-direction: column;
-  padding-right: 5rem;
-  margin-right: 5rem;
+  margin-right: 6rem;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 13rem;
+  align-self: flex-start;
 }
 
 .campContainer {
-  border-top: #95744b solid 2px;
-  margin: 0.5rem 3.5rem 0.5rem 4rem;
-  padding: 1rem 0rem 1rem 1rem;
-  width: 80%;
-  text-align: left;
-  font-size: 1.3rem;
+  margin-left: 2rem;
+  /* border-top: black solid 2px; */
+  padding: 1rem 0rem 1rem 2rem;
+  width: 90%;
+}
+
+.campContainer:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 @keyframes list-load {

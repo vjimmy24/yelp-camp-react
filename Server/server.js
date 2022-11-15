@@ -14,6 +14,10 @@ const { Review } = require("./models/review");
 const bodyParser = require("body-parser");
 const multer = require("multer");
 const MongoStore = require("connect-mongo");
+const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
+const geocoder = mbxGeocoding({
+  accessToken: process.env.REACT_APP_MAPBOX_TOKEN,
+});
 
 const { storage } = require("./cloudinary/index");
 const upload = multer({ storage });
@@ -25,6 +29,7 @@ const upload = multer({ storage });
 //     cb(null, Date.now() + "--" + file.originalname);
 //   },
 // });
+
 const cors = require("cors");
 
 const secret = "mangocat";
@@ -148,6 +153,12 @@ app.get("/api", (req, res) => {
 //Campground CRUD API
 app.post("/campground", upload.array("campImage"), async (req, res) => {
   console.log("creation request has been received!");
+  const geoData = await geocoder
+    .forwardGeocode({
+      query: req.body.location,
+      limit: 1,
+    })
+    .send();
   // res.status(200).send(req.file);
   res.send(req.user);
   // console.log(req.user);
@@ -158,6 +169,7 @@ app.post("/campground", upload.array("campImage"), async (req, res) => {
     url: img.path,
     fileName: img.filename,
   }));
+  newCampground.geometry = geoData.body.features[0].geometry;
   await newCampground.save();
   console.log(`Created new camp: ${newCampground}`);
 });

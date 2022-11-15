@@ -3,5 +3,5 @@
   position: absolute;
   right: -20%;
   transform: translate(0%, 0%);
-  overflow: hidden;
+  /* overflow: hidden; */
 }

@@ -1,49 +1,49 @@
-.navBar {
-  width: 100%;
-  margin-top: 1rem;
-  animation: fadeIn 3s;
-  display: block;
+.nav_header {
+  font-family: "Cabin", sans-serif;
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  z-index: 9999;
+  background-color: white;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 4rem;
+  margin-bottom: -2rem;
+  font-size: 1.4rem;
+  border-bottom: 2px solid black;
+  margin-right: 3rem;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  align-self: flex-start; /* <-- this is the fix */
+  background-color: red; /* Not necessary -- for example only */
+}
+
+.logo {
+  font-size: 2rem;
+  text-decoration: none;
+  color: black;
 }
 
 ul {
-  background-color: transparent;
+  display: flex;
+  flex-direction: row;
   list-style: none;
-  padding: 0;
-  margin: 0;
-  text-align: center;
+  justify-content: space-evenly;
 }
-.navItem {
-  font-size: large;
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-top: 0.5rem;
-  margin-left: 1rem;
-  margin-right: 2rem;
-  display: inline-block;
-  text-decoration: none;
-  border-bottom: solid 1px transparent;
-  text-align: center;
-}
-
-.NavLink {
-  /* color: rgb(204, 142, 19); */
-  color: black;
-  text-decoration: none;
-  text-align: center;
-  padding: 0.25rem;
-}
-
 .NavLink:hover {
-  /* border-bottom: solid 3px rgb(48, 91, 27); */
   box-shadow: 2.5px 3.5px rgba(0, 0, 0, 0.85);
-  background-color: rgba(204, 254, 152, 0.5);
+  background-color: #c4e0e6;
 }
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+.navItem,
+.NavLink {
+  text-decoration: none;
+  color: black;
+  padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+  font-size: 1.3rem;
 }

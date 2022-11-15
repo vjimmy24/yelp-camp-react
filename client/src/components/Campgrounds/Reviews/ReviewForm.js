@@ -1,6 +1,7 @@
 import { React, Fragment, useState, useRef, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ReviewContext from "../../../Context/review-context";
+import classes from "./ReviewForm.module.css";
 
 const ReviewForm = () => {
   const { reviews, setReviews } = useContext(ReviewContext);
@@ -39,9 +40,9 @@ const ReviewForm = () => {
   };
 
   return (
-    <Fragment>
+    <section className={classes.reviewFormContainer}>
       <form onSubmit={formSubmitHandler}>
-        <div>
+        <div className={classes.reviewFormElement}>
           <div>
             <label htmlFor="range">Rating: {ratingValue}</label>
           </div>
@@ -56,15 +57,21 @@ const ReviewForm = () => {
           />
         </div>
 
-        <div>
-          <div>
+        <div className={classes.reviewFormElement}>
+          <div className={classes.reviewFormElement}>
             <label htmlFor="texarea">Review:</label>
           </div>
-          <textarea name="body" ref={reviewBodyRef}></textarea>
+          <textarea
+            className={classes.reviewTextArea}
+            name="body"
+            ref={reviewBodyRef}
+          ></textarea>
         </div>
-        <button>Submit</button>
+        <div className={classes.reviewFormElement}>
+          <button className={classes.reviewButton}>Submit</button>
+        </div>
       </form>
-    </Fragment>
+    </section>
   );
 };
 

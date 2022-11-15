@@ -17,7 +17,7 @@ const CampgroundDetailsPage = () => {
       <section className={classes.reviewsContainer}>
         <h2 className={classes.reviewHeader}>Reviews</h2>
         {!isLoggedIn && (
-          <div>
+          <div className={classes.reviewHeader}>
             {" "}
             <p>
               Want to leave a review? <Link to="/login">Login</Link> or{" "}
